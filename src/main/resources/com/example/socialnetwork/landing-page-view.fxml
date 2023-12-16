@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.LandingPageController">
+   <children>
+      <Pane layoutX="-3.0" prefHeight="402.0" prefWidth="593.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="325.0" layoutX="137.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" >
+            <image>
+               <Image url="@images/logo-no-background.png" />
+            </image>
+            </ImageView>
+            <Button layoutX="165.0" layoutY="304.0" onAction="#handleLogin" mnemonicParsing="false" prefHeight="39.0" prefWidth="76.0" text="Login" />
+            <Button layoutX="365.0" layoutY="304.0" onAction="#handleSignUp" mnemonicParsing="false" prefHeight="39.0" prefWidth="76.0" text="Sign up" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

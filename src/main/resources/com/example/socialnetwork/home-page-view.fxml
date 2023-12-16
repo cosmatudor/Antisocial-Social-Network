@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="701.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.java.ir.map.controller.HomePageController">
+   <children>
+      <ImageView fitHeight="113.0" fitWidth="260.0" layoutX="365.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@images/logo-no-background.png" />
+          </image>
+      </ImageView>
+      <TabPane layoutY="136.0" prefHeight="588.0" prefWidth="990.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Friends">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="990.0">
+                     <children>
+                        <TableView fx:id="friendsTableView" layoutX="244.0" layoutY="14.0" prefHeight="504.0" prefWidth="502.0">
+                          <columns>
+                              <TableColumn fx:id="tableFriendsColumnUsername" prefWidth="164.60000610351562" text="Username" />
+                            <TableColumn fx:id="tableFriendsColumnFirstName" prefWidth="167.40005493164062" text="First Name" />
+                            <TableColumn fx:id="tableFriendsColumnSecondName" prefWidth="171.5999755859375" text="Last Name" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Friend Requests">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Separator layoutX="485.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="562.0" prefWidth="19.0" />
+                        <Label layoutX="189.0" layoutY="34.0" prefHeight="40.0" prefWidth="111.0" text="Received" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="714.0" layoutY="34.0" text="Sent" textAlignment="CENTER">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Label>
+                        <Button layoutX="149.0" layoutY="502.0" mnemonicParsing="false" onAction="#handleAcceptFriend" prefHeight="28.0" prefWidth="60.0" text="Accept" />
+                        <Button layoutX="290.0" layoutY="501.0" mnemonicParsing="false" onAction="#handleDeclineFriend" prefHeight="29.0" prefWidth="58.0" text="Reject" />
+                        <Button layoutX="769.0" layoutY="503.0" mnemonicParsing="false" text="Delete request" />
+                        <ListView fx:id="receivedList" layoutX="53.0" layoutY="80.0" prefHeight="397.0" prefWidth="383.0" />
+                        <ListView fx:id="sentList" layoutX="550.0" layoutY="81.0" prefHeight="397.0" prefWidth="383.0" />
+                        <Button layoutX="641.0" layoutY="503.0" mnemonicParsing="false" onAction="#handleAddFriend" text="Add friend" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Messages">
+                <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                            <TextField fx:id="textField" layoutX="215.0" layoutY="346.0" onKeyPressed="#sendMessage" prefHeight="38.0" prefWidth="713.0" promptText="Write a message" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                            <ScrollPane layoutX="514.0" layoutY="2.0" prefHeight="521.0" prefWidth="713.0" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <ListView fx:id="messagesList" prefHeight="520.0" prefWidth="713.0" />
+                           </content></ScrollPane>
+                            <ListView fx:id="messagesFriendList" onMouseClicked="#handleMouseClick" layoutY="14.0" prefHeight="559.0" prefWidth="277.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        </children></AnchorPane>
+                </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
