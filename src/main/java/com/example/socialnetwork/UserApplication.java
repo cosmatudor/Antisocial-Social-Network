@@ -2,7 +2,7 @@ package com.example.socialnetwork;
 
 import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.FriendshipsDBRepository;
 import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.MessagesDBRepository;
-import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.UserDBRepository;
+import com.example.socialnetwork.java.ir.map.repositories.paging.UserDBPagingRepository;
 import com.example.socialnetwork.java.ir.map.service.Service;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class UserApplication extends Application {
         final String URL = "jdbc:postgresql://localhost:5433/socialnetwork";
         final String USERNAME = "postgres";
         final String PASSWORD = "graspufos135";
-        UserDBRepository userDBRepository = new UserDBRepository(URL, USERNAME, PASSWORD);
+        UserDBPagingRepository userDBRepository = new UserDBPagingRepository(URL, USERNAME, PASSWORD);
         FriendshipsDBRepository friendshipDBRepository = new FriendshipsDBRepository(URL, USERNAME, PASSWORD);
         MessagesDBRepository messagesDBRepository = new MessagesDBRepository(URL, USERNAME, PASSWORD);
 

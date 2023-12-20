@@ -1,4 +1,4 @@
-package com.example.socialnetwork.java.ir.map.controller;
+package com.example.socialnetwork;
 
 import com.example.socialnetwork.UserController2;
 import com.example.socialnetwork.java.ir.map.controller.MessageAlert;
@@ -14,10 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -36,6 +33,7 @@ import java.util.stream.StreamSupport;
 
 public class HomePageController implements Observer<UserChangedEvent> {
     User user;
+    long chatFriendId;
     Service service;
     ObservableList<User> model = FXCollections.observableArrayList();
     ObservableList<String> modelReceived = FXCollections.observableArrayList();
@@ -61,6 +59,11 @@ public class HomePageController implements Observer<UserChangedEvent> {
     TextField textField;
     @FXML
     ListView<String> messagesList;
+    @FXML
+    Slider slider;
+    @FXML
+    TextField reqPerPage;
+
 
     public void setService(Service service, User user) {
         this.user = user;
@@ -74,9 +77,6 @@ public class HomePageController implements Observer<UserChangedEvent> {
         System.out.println("initModels() called");
 
         // ----------- Friends Table -----------
-        Iterable<User> users = service.findAllUsers();
-        List<User> usersAsList = StreamSupport.stream(users.spliterator(), false)
-                .collect(Collectors.toList()); // convert to list
         model.setAll(service.getFriendsOfUser(this.user.getId()));
 
         // ----------- Received List -----------
@@ -194,6 +194,7 @@ public class HomePageController implements Observer<UserChangedEvent> {
 
             // get the id of my friend that I'm chatting with
             ArrayList<Long> ids = _getIdOfFriends();
+            this.chatFriendId = ids.get(0);
             if (ids != null) {
                 ids.forEach(id -> service.saveMessage(this.user.getId(), id, text));
 
@@ -208,7 +209,8 @@ public class HomePageController implements Observer<UserChangedEvent> {
 
     public void handleMouseClick(MouseEvent actionEvent) {
         modelMessages.clear();
-        service.getMessagesBetweenTwoUsers(this.user.getId(), _getIdOfFriend()).forEach(
+        this.chatFriendId = _getIdOfFriend();
+        service.getMessagesBetweenTwoUsers(this.user.getId(), chatFriendId).forEach(
                 m -> modelMessages.add(service.findOne(m.getFrom()).getFirstName() + ":" + m.getText())
         );
     }
@@ -222,14 +224,15 @@ public class HomePageController implements Observer<UserChangedEvent> {
     }
 
     private ArrayList<Long> _getIdOfFriends() {
-        ArrayList<Long> ids = messagesFriendList.getSelectionModel().getSelectedItems().stream()
+        ArrayList<Long> ids;
+        ids = messagesFriendList.getSelectionModel().getSelectedItems().stream()
                 .map(str -> str.substring(str.indexOf("(") + 1, str.indexOf(")")))
                 .filter(Objects::nonNull)
                 .map(username -> service.findUserByUsername(username))
                 .collect(Collectors.toCollection(ArrayList::new));
         if (ids.isEmpty()) {
             MessageAlert.showErrorMessage(null, "You didn't select any user!");
-            return null;
+            ids.add(this.user.getId());
         }
         return ids;
     }
@@ -258,6 +261,66 @@ public class HomePageController implements Observer<UserChangedEvent> {
         modelMessages.clear();
         service.getMessagesBetweenTwoUsers(this.user.getId(), _getIdOfFriend()).forEach(
                 m -> modelMessages.add(service.findOne(m.getFrom()).getFirstName() + ":" + m.getText())
+        );
+    }
+
+    // ----------- Pagination -----------
+    public void setPageLength() {
+        service.setPageSize((int) slider.getValue());
+        model.setAll(service.getUsersOnPage(this.user.getId()));
+    }
+
+    public void handleNextPage(ActionEvent actionEvent) {
+        model.clear();
+        model.setAll(service.getNextPage(this.user.getId()));
+    }
+
+    public void handlePrevPage(ActionEvent actionEvent) {
+        model.clear();
+        model.setAll(service.getPreviousPage(this.user.getId()));
+    }
+
+    ////////////////
+    public void handleOk() {
+        int pageSize = Integer.parseInt(reqPerPage.getText());
+        service.setPageSize2(pageSize);
+
+        modelReceived.clear();
+        service.getUsersOnPageFR(this.user.getId()).forEach(
+                u -> modelReceived.add(u.getFirstName() + " " + u.getSecondName() + "(" + u.getUsername() + ")" + " sent you a friend request!")
+        );
+
+        modelSent.clear();
+        service.getUsersOnPageFR2(this.user.getId()).forEach(
+                u -> modelSent.add("You sent a friend request to " + u.getFirstName() + " " + u.getSecondName() + "(" + u.getUsername() + ")")
+        );
+    }
+
+    public void handleNextPageReceivedFR(ActionEvent actionEvent) {
+        modelReceived.clear();
+        service.getNextPageFR(this.user.getId()).forEach(
+                u -> modelReceived.add(u.getFirstName() + " " + u.getSecondName() + "(" + u.getUsername() + ")" + " sent you a friend request!")
+        );
+    }
+
+    public void handlePrevPageReceivedFR(ActionEvent actionEvent) {
+        modelReceived.clear();
+        service.getPreviousPageFR(this.user.getId()).forEach(
+                u -> modelReceived.add(u.getFirstName() + " " + u.getSecondName() + "(" + u.getUsername() + ")" + " sent you a friend request!")
+        );
+    }
+
+    public void handleNextPageSentFR(ActionEvent actionEvent) {
+        modelSent.clear();
+        service.getNextPageFR2(this.user.getId()).forEach(
+                u -> modelSent.add("You sent a friend request to " + u.getFirstName() + " " + u.getSecondName() + "(" + u.getUsername() + ")")
+        );
+    }
+
+    public void handlePrevPageSentFR(ActionEvent actionEvent) {
+        modelSent.clear();
+        service.getPreviousPageFR2(this.user.getId()).forEach(
+                u -> modelSent.add("You sent a friend request to " + u.getFirstName() + " " + u.getSecondName() + "(" + u.getUsername() + ")")
         );
     }
 }

@@ -58,7 +58,7 @@ public class LandingPageController {
     private void showUserSignUpDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("C:\\Users\\tudor\\OneDrive\\Desktop\\SocialNetwork\\src\\main\\resources\\com\\example\\socialnetwork\\login-view.fxml"));
+            loader.setLocation(getClass().getResource("signup-view.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();

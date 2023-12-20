@@ -1,6 +1,5 @@
 package com.example.socialnetwork;
 
-import com.example.socialnetwork.java.ir.map.controller.HomePageController;
 import com.example.socialnetwork.java.ir.map.controller.MessageAlert;
 import com.example.socialnetwork.java.ir.map.domain.User;
 import com.example.socialnetwork.java.ir.map.service.Service;

@@ -2,6 +2,7 @@ package com.example.socialnetwork.java.ir.map.service;
 
 import com.example.socialnetwork.java.ir.map.domain.*;
 import  com.example.socialnetwork.java.ir.map.repositories.IRepository;
+import com.example.socialnetwork.java.ir.map.repositories.paging.*;
 import com.example.socialnetwork.java.ir.map.utils.events.ChangeEventType;
 import com.example.socialnetwork.java.ir.map.utils.events.UserChangedEvent;
 import com.example.socialnetwork.java.ir.map.utils.observer.Observable;
@@ -10,13 +11,14 @@ import  com.example.socialnetwork.java.ir.map.validation.IValidator;
 import  com.example.socialnetwork.java.ir.map.validation.ValidationException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
  * Service class - the class that handles the business logic
  */
 public class Service implements Observable<UserChangedEvent> {
-    private IRepository<Long, User> usersRepo;
+    private IPagingRepository<Long, User> usersRepo;
     private IRepository<Tuple<Long, Long>, Friendship> friendsRepo;
     private IRepository<Long, Message> messagesRepo;
     private final IValidator<User> userValidator;
@@ -24,13 +26,22 @@ public class Service implements Observable<UserChangedEvent> {
     private Map<User, Integer> comunityOfUser = new HashMap<>();
     private List<Observer<UserChangedEvent>> observers = new ArrayList<>();
 
+    private int page = 1;
+    private int size = 0;
+
+    private int pageFR = 1;
+    private int sizeFR = 0;
+
+    private int pageFR2 = 1;
+    private int sizeFR2 = 0;
+
     /**
      * Constructor
      *
      * @param userRepository - the repository for users
      * @param friendsRepo    - the repository for friendships
      */
-    public Service(IRepository<Long, User> userRepository, IRepository<Tuple<Long, Long>, Friendship> friendsRepo, IRepository<Long, Message> messagesRepo) {
+    public Service(IPagingRepository<Long, User> userRepository, IRepository<Tuple<Long, Long>, Friendship> friendsRepo, IRepository<Long, Message> messagesRepo) {
         this.usersRepo = userRepository;
         this.friendsRepo = friendsRepo;
         this.messagesRepo = messagesRepo;
@@ -54,9 +65,6 @@ public class Service implements Observable<UserChangedEvent> {
                 throw new ValidationException("You cannot be friends with yourself!");
             }
         };
-
-//        addPredifinedUsers();
-//        addPredefinedFriendships();
     }
 
 
@@ -136,6 +144,7 @@ public class Service implements Observable<UserChangedEvent> {
     public long findIdUserByCredentials(String username, String password) {
         Iterable<User> users = usersRepo.findAll();
         for (User u : users) {
+            System.out.println(u.getUsername() + " " + u.getPassword());
             if (Objects.equals(u.getUsername(), username) && Objects.equals(u.getPassword(), password)) {
                 return u.getId();
             }
@@ -434,5 +443,73 @@ public class Service implements Observable<UserChangedEvent> {
     @Override
     public void notifyObservers(UserChangedEvent t) {
         observers.stream().forEach(x -> x.update(t));
+    }
+
+
+    // ------------- PAGINATION -------------
+    public void setPageSize(int size) {
+        this.size = size;
+    }
+
+
+    public ArrayList<User> getNextPage(long id) {
+        this.page++;
+        return getUsersOnPage(id);
+    }
+
+    public ArrayList<User> getPreviousPage(long id) {
+        if (this.page > 1) {
+            this.page--;
+        }
+        return getUsersOnPage(id);
+    }
+
+    public ArrayList<User> getUsersOnPage(long id) {
+        IPageable pageable = new Pageable(this.page, this.size);
+        Page<User> page = usersRepo.getFriendsOfUserWithStatus(id, Status.ACCEPTED, pageable);
+        return page.getContent().collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    ////////////
+    public void setPageSize2(int size) {
+        this.sizeFR = size;
+        this.sizeFR2 = size;
+    }
+
+    public ArrayList<User> getNextPageFR(long id) {
+        this.pageFR++;
+        return getUsersOnPageFR(id);
+    }
+
+    public ArrayList<User> getPreviousPageFR(long id) {
+        if (this.pageFR > 1) {
+            this.pageFR--;
+        }
+        return getUsersOnPageFR(id);
+    }
+
+    public ArrayList<User> getUsersOnPageFR(long id) {
+        IPageable pageable = new Pageable(this.pageFR, this.sizeFR);
+        Page<User> page = usersRepo.getUsersForReceived(id, pageable);
+        return page.getContent().collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    ////////////
+    public ArrayList<User> getNextPageFR2(long id) {
+        this.pageFR++;
+        return getUsersOnPageFR2(id);
+    }
+
+    public ArrayList<User> getPreviousPageFR2(long id) {
+        if (this.pageFR > 1) {
+            this.pageFR--;
+        }
+        return getUsersOnPageFR2(id);
+    }
+
+    public ArrayList<User> getUsersOnPageFR2(long id) {
+        IPageable pageable = new Pageable(this.pageFR, this.sizeFR);
+        Page<User> page = usersRepo.getUsersForSent(id, pageable);
+        return page.getContent().collect(Collectors.toCollection(ArrayList::new));
     }
 }

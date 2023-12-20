@@ -4,7 +4,9 @@ import com.example.socialnetwork.java.ir.map.domain.DTO_FriendsOfUser;
 import com.example.socialnetwork.java.ir.map.domain.Status;
 import com.example.socialnetwork.java.ir.map.domain.User;
 import com.example.socialnetwork.java.ir.map.repositories.IRepository;
+import com.example.socialnetwork.java.ir.map.utils.Crypting;
 
+import javax.crypto.SecretKey;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,10 +15,11 @@ import java.util.Optional;
 import java.util.Set;
 
 public class UserDBRepository implements IRepository<Long, User> {
-
     protected String url;
     protected String username;
     protected String password;
+
+    SecretKey secretKey = Crypting.getSecretKey();
 
     public UserDBRepository(String url, String username, String password) {
         this.url = url;
@@ -40,12 +43,12 @@ public class UserDBRepository implements IRepository<Long, User> {
                 String lastName = resultSet.getString("last_name");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                User user = new User(id, username, password, firstName, lastName);
+                User user = new User(id, username, Crypting.decrypt(password, secretKey), firstName, lastName);
                 return Optional.of(user);
             }
             return Optional.empty();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -110,13 +113,13 @@ public class UserDBRepository implements IRepository<Long, User> {
                 String lastName = resultSet.getString("last_name");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                User friend = new User(id2, username, password, firstName, lastName);
+                User friend = new User(id2, username, Crypting.decrypt(password, secretKey), firstName, lastName);
                 friends.add(friend);
             }
 
             return friends;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -147,13 +150,13 @@ public class UserDBRepository implements IRepository<Long, User> {
                 String lastName = resultSet.getString("last_name");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                User friend = new User(id2, username, password, firstName, lastName);
+                User friend = new User(id2, username, Crypting.decrypt(password, secretKey), firstName, lastName);
                 friends.add(friend);
             }
 
             return friends;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -179,13 +182,13 @@ public class UserDBRepository implements IRepository<Long, User> {
                 String lastName = resultSet.getString("last_name");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                User friend = new User(id2, username, password, firstName, lastName);
+                User friend = new User(id2, username, Crypting.decrypt(password, secretKey), firstName, lastName);
                 friends.add(friend);
             }
 
             return friends;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -211,13 +214,13 @@ public class UserDBRepository implements IRepository<Long, User> {
                 String lastName = resultSet.getString("last_name");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                User friend = new User(id2, username, password, firstName, lastName);
+                User friend = new User(id2, username, Crypting.decrypt(password, secretKey), firstName, lastName);
                 friends.add(friend);
             }
 
             return friends;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -252,7 +255,7 @@ public class UserDBRepository implements IRepository<Long, User> {
                 String lastName = resultSet.getString("last_name");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                User user = new User(id, username, password, firstName, lastName);
+                User user = new User(id, username, Crypting.decrypt(password, secretKey), firstName, lastName);
 
                 ArrayList<User> friends = new ArrayList<>(); // list of friends for current user
                 statement2.setLong(1, id); // set the id of the current user
@@ -263,7 +266,7 @@ public class UserDBRepository implements IRepository<Long, User> {
                     String lastName2 = resultSet2.getString("last_name");
                     String username2 = resultSet.getString("username");
                     String password2 = resultSet.getString("password");
-                    User friend = new User(id2, username2, password2, firstName2, lastName2);
+                    User friend = new User(id2, username2, Crypting.decrypt(password2, secretKey), firstName2, lastName2);
 
                     friends.add(friend);
                 }
@@ -274,7 +277,7 @@ public class UserDBRepository implements IRepository<Long, User> {
 
             return users;
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -292,12 +295,12 @@ public class UserDBRepository implements IRepository<Long, User> {
             statement.setString(2, entity.getFirstName());
             statement.setString(3, entity.getSecondName());
             statement.setString(4, entity.getUsername());
-            statement.setString(5, entity.getPassword());
+            statement.setString(5, Crypting.encrypt(entity.getPassword(), secretKey));
 
             int response = statement.executeUpdate();
             return response == 0 ? Optional.of(entity) : Optional.empty();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -360,4 +363,5 @@ public class UserDBRepository implements IRepository<Long, User> {
             throw new RuntimeException(e);
         }
     }
+
 }
