@@ -1,1 +1,1 @@
-﻿# Antisocial: A Minimalistic Social Network
+﻿# Antisocial: A Minimalist Social Network
