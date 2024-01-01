@@ -7,24 +7,35 @@ import com.example.socialnetwork.java.ir.map.repositories.IRepository;
 import com.example.socialnetwork.java.ir.map.utils.Crypting;
 
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class UserDBRepository implements IRepository<Long, User> {
     protected String url;
     protected String username;
     protected String password;
 
-    SecretKey secretKey = Crypting.getSecretKey();
+    private SecretKey secretKey;
 
     public UserDBRepository(String url, String username, String password) {
         this.url = url;
         this.username = username;
         this.password = password;
+
+        String keyString;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/com/example/socialnetwork/java/ir/map/secret_key"))) {
+            keyString = reader.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        byte[] keyEncoded = Base64.getDecoder().decode(keyString);
+        secretKey = new SecretKeySpec(keyEncoded, 0, keyEncoded.length, "AES");
     }
 
     @Override

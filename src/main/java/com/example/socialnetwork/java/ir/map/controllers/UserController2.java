@@ -1,12 +1,10 @@
-package com.example.socialnetwork.java.ir.map.controller;
+package com.example.socialnetwork.java.ir.map.controllers;
 
-import com.example.socialnetwork.java.ir.map.controller.MessageAlert;
 import com.example.socialnetwork.java.ir.map.domain.User;
 import com.example.socialnetwork.java.ir.map.service.Service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;

@@ -1,4 +1,4 @@
-package com.example.socialnetwork.java.ir.map.controller;
+package com.example.socialnetwork.java.ir.map.controllers;
 
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;

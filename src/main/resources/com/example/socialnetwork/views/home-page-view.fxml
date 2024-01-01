@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="701.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.java.ir.map.controller.HomePageController">
+<AnchorPane prefHeight="701.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.java.ir.map.controllers.HomePageController">
    <children>
       <ImageView fitHeight="113.0" fitWidth="260.0" layoutX="365.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
           <image>
-              <Image url="@images/logo-no-background.png" />
+              <Image url="@../images/logo-no-background.png" />
           </image>
       </ImageView>
       <TabPane layoutY="136.0" prefHeight="588.0" prefWidth="990.0" tabClosingPolicy="UNAVAILABLE">

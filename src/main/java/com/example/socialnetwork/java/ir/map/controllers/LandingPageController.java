@@ -1,4 +1,4 @@
-package com.example.socialnetwork.java.ir.map.controller;
+package com.example.socialnetwork.java.ir.map.controllers;
 
 import com.example.socialnetwork.java.ir.map.service.Service;
 import javafx.fxml.FXML;

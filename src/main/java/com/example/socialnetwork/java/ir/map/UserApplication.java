@@ -1,6 +1,6 @@
-package com.example.socialnetwork;
+package com.example.socialnetwork.java.ir.map;
 
-import com.example.socialnetwork.java.ir.map.controller.LandingPageController;
+import com.example.socialnetwork.java.ir.map.controllers.LandingPageController;
 import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.FriendshipsDBRepository;
 import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.MessagesDBRepository;
 import com.example.socialnetwork.java.ir.map.repositories.paging.UserDBPagingRepository;
@@ -41,7 +41,7 @@ public class UserApplication extends Application {
     private void initView(Stage primaryStage) throws IOException {
 
         FXMLLoader loginLoader = new FXMLLoader();
-        loginLoader.setLocation(getClass().getResource("landing-page-view.fxml"));
+        loginLoader.setLocation(getClass().getResource("/com/example/socialnetwork/views/landing-page-view.fxml"));
         AnchorPane userLayout = loginLoader.load();
         primaryStage.setScene(new Scene(userLayout));
 

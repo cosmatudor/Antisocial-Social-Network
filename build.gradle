@@ -25,8 +25,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'com.example.socialnetwork'
-    mainClass = 'com.example.socialnetwork.HelloApplication'
+    mainModule = 'com.example.socialnetwork.java.ir.map'
+    mainClass = 'com.example.socialnetwork.java.ir.map.HelloApplication'
 }
 
 javafx {
