@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="520.0" prefWidth="35.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.UserController">
+<AnchorPane prefHeight="520.0" prefWidth="35.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.java.ir.map.controller.UserController">
     <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="520.0" prefWidth="721.0">
         <items>

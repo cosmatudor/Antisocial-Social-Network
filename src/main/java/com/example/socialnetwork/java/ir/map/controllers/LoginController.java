@@ -1,6 +1,5 @@
-package com.example.socialnetwork;
+package com.example.socialnetwork.java.ir.map.controller;
 
-import com.example.socialnetwork.java.ir.map.controller.MessageAlert;
 import com.example.socialnetwork.java.ir.map.domain.User;
 import com.example.socialnetwork.java.ir.map.service.Service;
 import javafx.fxml.FXML;
@@ -50,7 +49,7 @@ public class LoginController {
     public void showUserEditDialog(User user) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("home-page-view.fxml"));
+            loader.setLocation(getClass().getResource("/com/example/socialnetwork/views/home-page-view.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
 
             // create the dialog Stage.

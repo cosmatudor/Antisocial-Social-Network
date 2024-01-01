@@ -1,5 +1,6 @@
 package com.example.socialnetwork;
 
+import com.example.socialnetwork.java.ir.map.controller.LandingPageController;
 import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.FriendshipsDBRepository;
 import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.MessagesDBRepository;
 import com.example.socialnetwork.java.ir.map.repositories.paging.UserDBPagingRepository;

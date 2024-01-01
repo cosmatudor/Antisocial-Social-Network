@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="486.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.UserController2">
+<AnchorPane prefHeight="486.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.socialnetwork.java.ir.map.controller.UserController2">
    <children>
       <TableView fx:id="friendsTV" layoutX="-1.0" prefHeight="394.0" prefWidth="550.0">
         <columns>

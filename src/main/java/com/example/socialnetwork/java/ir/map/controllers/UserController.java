@@ -1,7 +1,5 @@
-package com.example.socialnetwork;
+package com.example.socialnetwork.java.ir.map.controller;
 
-import com.example.socialnetwork.java.ir.map.controller.MessageAlert;
-import com.example.socialnetwork.java.ir.map.controller.UserEditController;
 import com.example.socialnetwork.java.ir.map.domain.User;
 import com.example.socialnetwork.java.ir.map.service.Service;
 import com.example.socialnetwork.java.ir.map.utils.events.UserChangedEvent;
@@ -93,7 +91,7 @@ public class UserController implements Observer<UserChangedEvent> {
         try {
             // create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("user_edit-view.fxml"));
+            loader.setLocation(getClass().getResource("/com/example/socialnetwork/views/user_edit-view.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
 
             // create the dialog Stage.

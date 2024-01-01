@@ -1,4 +1,4 @@
-package com.example.socialnetwork;
+package com.example.socialnetwork.java.ir.map.controller;
 
 import com.example.socialnetwork.java.ir.map.controller.MessageAlert;
 import com.example.socialnetwork.java.ir.map.domain.User;

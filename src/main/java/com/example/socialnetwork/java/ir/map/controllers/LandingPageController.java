@@ -1,7 +1,5 @@
-package com.example.socialnetwork;
+package com.example.socialnetwork.java.ir.map.controller;
 
-import com.example.socialnetwork.LoginController;
-import com.example.socialnetwork.SignUpController;
 import com.example.socialnetwork.java.ir.map.service.Service;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +33,7 @@ public class LandingPageController {
     public void showUserLoginDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("login-view.fxml"));
+            loader.setLocation(getClass().getResource("/com/example/socialnetwork/views/login-view.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
@@ -58,7 +56,7 @@ public class LandingPageController {
     private void showUserSignUpDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("signup-view.fxml"));
+            loader.setLocation(getClass().getResource("/com/example/socialnetwork/views/signup-view.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();

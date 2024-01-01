@@ -1,7 +1,5 @@
-package com.example.socialnetwork;
+package com.example.socialnetwork.java.ir.map.controller;
 
-import com.example.socialnetwork.UserController2;
-import com.example.socialnetwork.java.ir.map.controller.MessageAlert;
 import com.example.socialnetwork.java.ir.map.domain.Status;
 import com.example.socialnetwork.java.ir.map.domain.User;
 import com.example.socialnetwork.java.ir.map.service.Service;
@@ -25,10 +23,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 
 public class HomePageController implements Observer<UserChangedEvent> {
@@ -131,7 +127,7 @@ public class HomePageController implements Observer<UserChangedEvent> {
     private void showUserNonFriendsDialog() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("user-view2.fxml"));
+            loader.setLocation(getClass().getResource("/com/example/socialnetwork/views/user-view2.fxml"));
             AnchorPane root = (AnchorPane) loader.load();
 
             // create the dialog Stage.
