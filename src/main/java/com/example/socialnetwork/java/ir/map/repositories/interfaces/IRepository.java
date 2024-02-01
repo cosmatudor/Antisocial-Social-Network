@@ -1,4 +1,4 @@
-package com.example.socialnetwork.java.ir.map.repositories;
+package com.example.socialnetwork.java.ir.map.repositories.interfaces;
 
 import  com.example.socialnetwork.java.ir.map.domain.DTO_FriendsOfUser;
 import  com.example.socialnetwork.java.ir.map.domain.Entity;
@@ -60,12 +60,8 @@ public interface IRepository<ID, E extends Entity<ID>> {
      */
     Optional<E> update(E entity);
 
+    /**
+     * @return the number of entities
+     */
     public int size();
-
-    Iterable<DTO_FriendsOfUser> getFriendsOfUser(Long id);
-
-    ArrayList<User> getFriendsOfUser2(Long id);
-    ArrayList<User> getFriendsOfUserWithStatus(Long id, Status status);
-    ArrayList<User> getUsersForReceived(Long id);
-    ArrayList<User> getUsersForSent(Long id);
 }

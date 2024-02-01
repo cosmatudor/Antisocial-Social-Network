@@ -1,14 +1,13 @@
-package com.example.socialnetwork.java.ir.map.repositories.DBRepositories;
+package com.example.socialnetwork.java.ir.map.repositories.database;
 
 import com.example.socialnetwork.java.ir.map.domain.DTO_FriendsOfUser;
 import com.example.socialnetwork.java.ir.map.domain.Message;
 import com.example.socialnetwork.java.ir.map.domain.Status;
 import com.example.socialnetwork.java.ir.map.domain.User;
-import com.example.socialnetwork.java.ir.map.repositories.IRepository;
+import com.example.socialnetwork.java.ir.map.repositories.interfaces.IRepository;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -136,34 +135,9 @@ public class MessagesDBRepository implements IRepository<Long, Message> {
         }
     }
 
-    /* ---------------------------------------------------------------------- */
     @Override
     public Optional<Message> update(Message entity) {
         return Optional.empty();
     }
 
-    @Override
-    public Iterable<DTO_FriendsOfUser> getFriendsOfUser(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getFriendsOfUser2(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getFriendsOfUserWithStatus(Long id, Status status) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getUsersForReceived(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getUsersForSent(Long id) {
-        return null;
-    }
 }

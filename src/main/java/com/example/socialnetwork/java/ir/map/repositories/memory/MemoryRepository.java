@@ -1,9 +1,10 @@
-package com.example.socialnetwork.java.ir.map.repositories;
+package com.example.socialnetwork.java.ir.map.repositories.memory;
 
 import  com.example.socialnetwork.java.ir.map.domain.DTO_FriendsOfUser;
 import  com.example.socialnetwork.java.ir.map.domain.Entity;
 import com.example.socialnetwork.java.ir.map.domain.Status;
 import com.example.socialnetwork.java.ir.map.domain.User;
+import com.example.socialnetwork.java.ir.map.repositories.interfaces.IRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,30 +58,5 @@ public class MemoryRepository<ID, E extends Entity<ID>> implements IRepository<I
 
     public int size() {
         return entities.size();
-    }
-
-    @Override
-    public Iterable<DTO_FriendsOfUser> getFriendsOfUser(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getFriendsOfUser2(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getFriendsOfUserWithStatus(Long id, Status status) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getUsersForReceived(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getUsersForSent(Long id) {
-        return null;
     }
 }

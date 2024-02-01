@@ -1,22 +1,21 @@
-package com.example.socialnetwork.java.ir.map.repositories.DBRepositories;
+package com.example.socialnetwork.java.ir.map.repositories.database;
 
 import com.example.socialnetwork.java.ir.map.domain.DTO_FriendsOfUser;
 import com.example.socialnetwork.java.ir.map.domain.Status;
 import com.example.socialnetwork.java.ir.map.domain.User;
-import com.example.socialnetwork.java.ir.map.repositories.IRepository;
+import com.example.socialnetwork.java.ir.map.repositories.interfaces.IUserRepository;
 import com.example.socialnetwork.java.ir.map.utils.Crypting;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class UserDBRepository implements IRepository<Long, User> {
+public class UserDBRepository implements IUserRepository<Long, User> {
     protected String url;
     protected String username;
     protected String password;

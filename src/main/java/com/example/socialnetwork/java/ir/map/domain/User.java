@@ -84,8 +84,6 @@ public class User extends Entity<Long> {
 
 
     // -------------- Overrides --------------
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,15 +1,15 @@
 package com.example.socialnetwork.java.ir.map;
 
 import com.example.socialnetwork.java.ir.map.domain.Message;
-import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.FriendshipsDBRepository;
-import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.MessagesDBRepository;
+import com.example.socialnetwork.java.ir.map.repositories.database.FriendshipsDBRepository;
+import com.example.socialnetwork.java.ir.map.repositories.database.MessagesDBRepository;
 import com.example.socialnetwork.java.ir.map.repositories.paging.IPagingRepository;
 import com.example.socialnetwork.java.ir.map.repositories.paging.UserDBPagingRepository;
 import  com.example.socialnetwork.java.ir.map.ui.UI;
 import  com.example.socialnetwork.java.ir.map.domain.Friendship;
 import  com.example.socialnetwork.java.ir.map.domain.Tuple;
 import  com.example.socialnetwork.java.ir.map.domain.User;
-import  com.example.socialnetwork.java.ir.map.repositories.IRepository;
+import com.example.socialnetwork.java.ir.map.repositories.interfaces.IRepository;
 import  com.example.socialnetwork.java.ir.map.service.Service;
 
 public class Main {

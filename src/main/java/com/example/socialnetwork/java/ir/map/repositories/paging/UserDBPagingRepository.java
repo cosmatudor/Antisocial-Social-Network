@@ -2,7 +2,7 @@ package com.example.socialnetwork.java.ir.map.repositories.paging;
 
 import com.example.socialnetwork.java.ir.map.domain.Status;
 import com.example.socialnetwork.java.ir.map.domain.User;
-import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.UserDBRepository;
+import com.example.socialnetwork.java.ir.map.repositories.database.UserDBRepository;
 
 import java.sql.*;
 import java.util.ArrayList;

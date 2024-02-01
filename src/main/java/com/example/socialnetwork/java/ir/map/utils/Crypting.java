@@ -31,14 +31,4 @@ public class Crypting {
         return new String(decryptedBytes, StandardCharsets.UTF_8);
     }
 
-    public static SecretKey getSecretKey() {
-        if (secretKey == null) {
-            try {
-                secretKey = generateSecretKey();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return secretKey;
-    }
 }

@@ -1,8 +1,14 @@
 package com.example.socialnetwork.java.ir.map;
 
 import com.example.socialnetwork.java.ir.map.controllers.LandingPageController;
-import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.FriendshipsDBRepository;
-import com.example.socialnetwork.java.ir.map.repositories.DBRepositories.MessagesDBRepository;
+import com.example.socialnetwork.java.ir.map.domain.Friendship;
+import com.example.socialnetwork.java.ir.map.domain.Message;
+import com.example.socialnetwork.java.ir.map.domain.Tuple;
+import com.example.socialnetwork.java.ir.map.domain.User;
+import com.example.socialnetwork.java.ir.map.repositories.database.FriendshipsDBRepository;
+import com.example.socialnetwork.java.ir.map.repositories.database.MessagesDBRepository;
+import com.example.socialnetwork.java.ir.map.repositories.interfaces.IRepository;
+import com.example.socialnetwork.java.ir.map.repositories.paging.IPagingRepository;
 import com.example.socialnetwork.java.ir.map.repositories.paging.UserDBPagingRepository;
 import com.example.socialnetwork.java.ir.map.service.Service;
 import javafx.application.Application;
@@ -23,9 +29,9 @@ public class UserApplication extends Application {
         final String URL = "jdbc:postgresql://localhost:5433/socialnetwork";
         final String USERNAME = "postgres";
         final String PASSWORD = "graspufos135";
-        UserDBPagingRepository userDBRepository = new UserDBPagingRepository(URL, USERNAME, PASSWORD);
-        FriendshipsDBRepository friendshipDBRepository = new FriendshipsDBRepository(URL, USERNAME, PASSWORD);
-        MessagesDBRepository messagesDBRepository = new MessagesDBRepository(URL, USERNAME, PASSWORD);
+        IPagingRepository<Long, User> userDBRepository = new UserDBPagingRepository(URL, USERNAME, PASSWORD);
+        IRepository<Tuple<Long, Long>, Friendship> friendshipDBRepository = new FriendshipsDBRepository(URL, USERNAME, PASSWORD);
+        IRepository<Long, Message> messagesDBRepository = new MessagesDBRepository(URL, USERNAME, PASSWORD);
 
         service = new Service(userDBRepository, friendshipDBRepository, messagesDBRepository);
 

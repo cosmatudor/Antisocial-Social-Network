@@ -1,7 +1,7 @@
-package com.example.socialnetwork.java.ir.map.repositories.DBRepositories;
+package com.example.socialnetwork.java.ir.map.repositories.database;
 
 import com.example.socialnetwork.java.ir.map.domain.*;
-import  com.example.socialnetwork.java.ir.map.repositories.IRepository;
+import com.example.socialnetwork.java.ir.map.repositories.interfaces.IRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -148,30 +148,5 @@ public class FriendshipsDBRepository implements IRepository<Tuple<Long, Long>, F
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public Iterable<DTO_FriendsOfUser> getFriendsOfUser(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getFriendsOfUser2(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getFriendsOfUserWithStatus(Long id, Status status) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getUsersForReceived(Long id) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<User> getUsersForSent(Long id) {
-        return null;
     }
 }

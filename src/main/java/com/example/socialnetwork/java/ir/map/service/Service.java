@@ -1,7 +1,7 @@
 package com.example.socialnetwork.java.ir.map.service;
 
 import com.example.socialnetwork.java.ir.map.domain.*;
-import  com.example.socialnetwork.java.ir.map.repositories.IRepository;
+import com.example.socialnetwork.java.ir.map.repositories.interfaces.IRepository;
 import com.example.socialnetwork.java.ir.map.repositories.paging.*;
 import com.example.socialnetwork.java.ir.map.utils.events.ChangeEventType;
 import com.example.socialnetwork.java.ir.map.utils.events.UserChangedEvent;
@@ -14,15 +14,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-/**
- * Service class - the class that handles the business logic
- */
 public class Service implements Observable<UserChangedEvent> {
     private IPagingRepository<Long, User> usersRepo;
     private IRepository<Tuple<Long, Long>, Friendship> friendsRepo;
     private IRepository<Long, Message> messagesRepo;
+
     private final IValidator<User> userValidator;
     private final IValidator<Friendship> friendshipValidator;
+
     private Map<User, Integer> comunityOfUser = new HashMap<>();
     private List<Observer<UserChangedEvent>> observers = new ArrayList<>();
 
