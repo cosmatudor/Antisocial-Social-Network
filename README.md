@@ -30,3 +30,5 @@ This project serves as a practical touchpoint for numerous computer science conc
 - Algorithms: Implementation of searching and sorting mechanisms for user interactions.
 - Systems Programming: Managing resources and database connections effectively.
 
+## Screenshots
+![Screenshot 2024-02-02 000538](https://github.com/cosmatudor/Antisocial-Social-Network/assets/111079498/905b8e6d-36aa-4b6d-a2b9-b2add6076f31)
